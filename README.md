@@ -22,8 +22,7 @@ job the scheduler no longer picks up leaves no trace at all.
   *Settings > General Settings > Cron Monitor*: default e-mails (empty = events
   are recorded but no mail is sent), stall threshold (24 h), event retention
   (90 days, cleaned by autovacuum).
-- **Only runs started by the scheduler are monitored.** *Run Manually* does not go through
-  `_callback` in Odoo 18 - the error is shown straight in the browser and nothing is recorded.
+- *Run Manually* goes through the regular job runner in Odoo 19, so manual runs are monitored too.
 - If the monitor itself hits an error it never breaks the job; the last such error is kept in the
   system parameter `hfb_cron_monitor.last_error`.
 - Events: *Settings > Technical > Automation > Cron Monitor Events*.
@@ -48,5 +47,5 @@ lock that is only released after the job returns. All state lives in
 
 Ported from the 17.0 branch (see its history for the rewrite of the client-specific `hfb_cron_status`).
 
-Not yet done: installed/tested on an Odoo 18 instance, `i18n/pl.po`,
+Not yet done: installed/tested on an Odoo 19 instance, `i18n/pl.po`,
 `static/description/icon.png`, banner screenshot.
