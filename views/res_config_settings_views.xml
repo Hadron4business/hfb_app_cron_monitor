@@ -5,7 +5,7 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//app[@name='general_settings']" position="inside">
+            <xpath expr="//widget[@name='res_config_dev_tool']" position="before">
                 <block title="Cron Monitor" name="hfb_cron_monitor_setting_container" groups="base.group_system">
                     <setting string="Default Alert E-mails"
                              help="Who gets an alert when a scheduled action fails or stalls and has no addresses of its own.">
