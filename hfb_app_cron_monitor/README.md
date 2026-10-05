@@ -48,5 +48,6 @@ lock that is only released after the job returns. All state lives in
 
 Ported from the 17.0 branch (see its history for the rewrite of the client-specific `hfb_cron_status`).
 
-Not yet done: installed/tested on an Odoo 20 instance, `i18n/pl.po`,
-`static/description/icon.png`, banner screenshot.
+Not yet installed or tested on a running Odoo 20 instance.
+
+Polish translation (`i18n/pl.po`), store icon and banner included.
