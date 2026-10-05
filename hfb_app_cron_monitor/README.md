@@ -52,4 +52,4 @@ code) and would have deadlocked on the `ir_cron` row lock.
 
 Tested on an Odoo 17 instance (failure, repeated failure, recovery, stalled job, monitoring switched off).
 
-Not yet done: `i18n/pl.po`, `static/description/icon.png`, banner screenshot.
+Polish translation (`i18n/pl.po`), store icon and banner included.

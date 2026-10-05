@@ -55,6 +55,9 @@ scheduled action, together with a "recovered" event when it runs fine again.
         'views/ir_cron_views.xml',
         'views/res_config_settings_views.xml',
     ],
+    'images': [
+        'static/description/banner_screenshot.png',
+    ],
     'installable': True,
     'application': False,
 }
