@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hfb_cron_event_view_tree" model="ir.ui.view">
+        <field name="name">hfb.cron.event.tree</field>
+        <field name="model">hfb.cron.event</field>
+        <field name="arch" type="xml">
+            <tree create="0" edit="0"
+                  decoration-danger="kind == 'failed'"
+                  decoration-warning="kind == 'stalled'"
+                  decoration-success="kind == 'recovered'">
+                <field name="create_date"/>
+                <field name="cron_id"/>
+                <field name="kind"/>
+                <field name="occurrences"/>
+                <field name="message"/>
+                <field name="notified_emails"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hfb_cron_event_view_form" model="ir.ui.view">
+        <field name="name">hfb.cron.event.form</field>
+        <field name="model">hfb.cron.event</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="cron_id"/>
+                            <field name="kind"/>
+                            <field name="create_date"/>
+                        </group>
+                        <group>
+                            <field name="occurrences" invisible="kind != 'failed'"/>
+                            <field name="last_occurrence"/>
+                            <field name="notified_emails"/>
+                            <field name="notify_error" invisible="not notify_error"/>
+                        </group>
+                    </group>
+                    <group string="Message">
+                        <field name="message" nolabel="1"/>
+                    </group>
+                    <group string="Technical Details" invisible="not details">
+                        <field name="details" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hfb_cron_event_view_search" model="ir.ui.view">
+        <field name="name">hfb.cron.event.search</field>
+        <field name="model">hfb.cron.event</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="cron_id"/>
+                <field name="message"/>
+                <filter name="failed" string="Failed" domain="[('kind', '=', 'failed')]"/>
+                <filter name="stalled" string="Stalled" domain="[('kind', '=', 'stalled')]"/>
+                <filter name="recovered" string="Recovered" domain="[('kind', '=', 'recovered')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_cron" string="Scheduled Action" context="{'group_by': 'cron_id'}"/>
+                    <filter name="group_kind" string="Event" context="{'group_by': 'kind'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="hfb_cron_event_action" model="ir.actions.act_window">
+        <field name="name">Cron Monitor Events</field>
+        <field name="res_model">hfb.cron.event</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="hfb_cron_event_menu"
+              parent="base.menu_automation"
+              action="hfb_cron_event_action"
+              groups="base.group_system"
+              sequence="3"/>
+</odoo>

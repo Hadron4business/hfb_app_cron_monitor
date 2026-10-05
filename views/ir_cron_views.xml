@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_view_form_monitor" model="ir.ui.view">
+        <field name="name">ir.cron.form.monitor</field>
+        <field name="model">ir.cron</field>
+        <field name="inherit_id" ref="base.ir_cron_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="after">
+                <notebook>
+                    <page string="Monitoring" name="hfb_cron_monitor">
+                        <group>
+                            <field name="monitor_enabled"/>
+                            <field name="monitor_emails" invisible="not monitor_enabled"/>
+                            <field name="monitor_threshold_hours" invisible="not monitor_enabled"/>
+                        </group>
+                        <field name="event_ids" readonly="1">
+                            <tree decoration-danger="kind == 'failed'"
+                                  decoration-warning="kind == 'stalled'"
+                                  decoration-success="kind == 'recovered'">
+                                <field name="create_date"/>
+                                <field name="kind"/>
+                                <field name="occurrences"/>
+                                <field name="message"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>

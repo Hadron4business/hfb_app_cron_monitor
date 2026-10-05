@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_cron_monitor" model="ir.ui.view">
+        <field name="name">res.config.settings.form.cron.monitor</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='general_settings']" position="inside">
+                <block title="Cron Monitor" name="hfb_cron_monitor_setting_container" groups="base.group_system">
+                    <setting string="Default Alert E-mails"
+                             help="Who gets an alert when a scheduled action fails or stalls and has no addresses of its own.">
+                        <field name="cron_monitor_default_emails" placeholder="admin@example.com, it@example.com"/>
+                    </setting>
+                    <setting string="Stalled After (hours)"
+                             help="A scheduled action that was due this long ago and has not run raises an alert.">
+                        <field name="cron_monitor_threshold_hours"/>
+                    </setting>
+                    <setting string="Keep Events (days)"
+                             help="Monitoring events older than this are deleted automatically. 0 keeps them forever.">
+                        <field name="cron_monitor_retention_days"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

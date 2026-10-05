@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="mail_template_cron_event" model="mail.template">
+        <field name="name">Cron Monitor: alert</field>
+        <field name="model_id" ref="model_hfb_cron_event"/>
+        <field name="subject">[Cron Monitor] {{ object.display_name }}</field>
+        <field name="email_from">{{ object.env.company.partner_id.email_formatted or user.email_formatted }}</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px; font-size: 14px;">
+    <p>
+        Scheduled action <strong t-out="object.cron_id.name"/> needs attention.
+    </p>
+    <p t-if="object.kind == 'failed'">The last run failed with:</p>
+    <pre t-out="object.message" style="white-space: pre-wrap;"/>
+    <p t-if="object.kind == 'failed'">
+        You will not get another e-mail until the action has run successfully
+        and failed again. The full traceback is on the event, in the
+        Monitoring tab of the scheduled action.
+    </p>
+    <p t-if="object.kind == 'stalled'">
+        Check that the Odoo cron workers are running and that the action is
+        not blocked by a long-running job.
+    </p>
+</div>
+        </field>
+    </record>
+</odoo>
