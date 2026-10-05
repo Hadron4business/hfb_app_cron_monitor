@@ -58,7 +58,7 @@
                 <filter name="failed" string="Failed" domain="[('kind', '=', 'failed')]"/>
                 <filter name="stalled" string="Stalled" domain="[('kind', '=', 'stalled')]"/>
                 <filter name="recovered" string="Recovered" domain="[('kind', '=', 'recovered')]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="group_cron" string="Scheduled Action" context="{'group_by': 'cron_id'}"/>
                     <filter name="group_kind" string="Event" context="{'group_by': 'kind'}"/>
                 </group>
