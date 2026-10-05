@@ -1,0 +1,325 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hfb_app_cron_monitor
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-05 11:33+0000\n"
+"PO-Revision-Date: 2026-10-05 11:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: Polish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pl\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: hfb_app_cron_monitor
+#: model:mail.template,body_html:hfb_app_cron_monitor.mail_template_cron_event
+msgid ""
+"<div style=\"margin: 0px; padding: 0px; font-size: 14px;\">\n"
+"    <p>\n"
+"        Scheduled action <strong t-out=\"object.cron_id.name\"></strong> needs attention.\n"
+"    </p>\n"
+"    <p t-if=\"object.kind == 'failed'\">The last run failed with:</p>\n"
+"    <pre t-out=\"object.message\" style=\"white-space: pre-wrap;\"></pre>\n"
+"    <p t-if=\"object.kind == 'failed'\">\n"
+"        You will not get another e-mail until the action has run successfully\n"
+"        and failed again. The full traceback is on the event, in the\n"
+"        Monitoring tab of the scheduled action.\n"
+"    </p>\n"
+"    <p t-if=\"object.kind == 'stalled'\">\n"
+"        Check that the Odoo cron workers are running and that the action is\n"
+"        not blocked by a long-running job.\n"
+"    </p>\n"
+"</div>\n"
+"        "
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px; font-size: 14px;\">\n"
+"    <p>\n"
+"        Zaplanowana akcja <strong t-out=\"object.cron_id.name\"></strong> wymaga uwagi.\n"
+"    </p>\n"
+"    <p t-if=\"object.kind == 'failed'\">Ostatnie uruchomienie zakończyło się błędem:</p>\n"
+"    <pre t-out=\"object.message\" style=\"white-space: pre-wrap;\"></pre>\n"
+"    <p t-if=\"object.kind == 'failed'\">\n"
+"        Nie dostaniesz kolejnego e-maila, dopóki akcja nie wykona się poprawnie\n"
+"        i nie zakończy się błędem ponownie. Pełny traceback jest w zdarzeniu, w\n"
+"        zakładce Monitorowanie zaplanowanej akcji.\n"
+"    </p>\n"
+"    <p t-if=\"object.kind == 'stalled'\">\n"
+"        Sprawdź, czy workery cronów Odoo działają i czy akcja nie jest\n"
+"        zablokowana przez długo działające zadanie.\n"
+"    </p>\n"
+"</div>\n"
+"        "
+
+#. module: hfb_app_cron_monitor
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.res_config_settings_view_form_cron_monitor
+msgid ""
+"A scheduled action that was due this long ago and has not run raises an "
+"alert."
+msgstr "Zaplanowana akcja, która miała się wykonać tak dawno temu i nadal się nie wykonała, wywołuje alert."
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_ir_cron__monitor_emails
+msgid "Alert E-mails"
+msgstr "Adresy e-mail alertów"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_hfb_cron_event__notify_error
+msgid "Alert Error"
+msgstr "Błąd alertu"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_hfb_cron_event__notified_emails
+msgid "Alert Sent To"
+msgstr "Alert wysłano do"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,help:hfb_app_cron_monitor.field_res_config_settings__cron_monitor_default_emails
+msgid ""
+"Comma-separated addresses used for every scheduled action that has no alert "
+"e-mails of its own."
+msgstr "Adresy oddzielone przecinkami, używane dla każdej zaplanowanej akcji, która nie ma własnych adresów alertów."
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,help:hfb_app_cron_monitor.field_ir_cron__monitor_emails
+msgid ""
+"Comma-separated addresses. Leave empty to use the default addresses from "
+"Settings."
+msgstr "Adresy oddzielone przecinkami. Zostaw puste, aby użyć domyślnych adresów z Ustawień."
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model,name:hfb_app_cron_monitor.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ustawienia konfiguracji"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_hfb_cron_event__create_uid
+msgid "Created by"
+msgstr "Utworzył(a)"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_hfb_cron_event__create_date
+msgid "Created on"
+msgstr "Data utworzenia"
+
+#. module: hfb_app_cron_monitor
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.res_config_settings_view_form_cron_monitor
+msgid "Cron Monitor"
+msgstr "Monitor cronów"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.actions.act_window,name:hfb_app_cron_monitor.hfb_cron_event_action
+#: model:ir.ui.menu,name:hfb_app_cron_monitor.hfb_cron_event_menu
+msgid "Cron Monitor Events"
+msgstr "Zdarzenia monitora cronów"
+
+#. module: hfb_app_cron_monitor
+#: model:mail.template,name:hfb_app_cron_monitor.mail_template_cron_event
+msgid "Cron Monitor: alert"
+msgstr "Monitor cronów: alert"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.actions.server,name:hfb_app_cron_monitor.ir_cron_check_stalled_ir_actions_server
+msgid "Cron Monitor: check for stalled scheduled actions"
+msgstr "Monitor cronów: sprawdzanie zablokowanych zaplanowanych akcji"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_res_config_settings__cron_monitor_default_emails
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.res_config_settings_view_form_cron_monitor
+msgid "Default Alert E-mails"
+msgstr "Domyślne adresy e-mail alertów"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,help:hfb_app_cron_monitor.field_res_config_settings__cron_monitor_threshold_hours
+msgid "Default for scheduled actions without their own threshold."
+msgstr "Wartość domyślna dla zaplanowanych akcji bez własnego progu."
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_hfb_cron_event__display_name
+msgid "Display Name"
+msgstr "Nazwa wyświetlana"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_hfb_cron_event__kind
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.hfb_cron_event_view_search
+msgid "Event"
+msgstr "Zdarzenie"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields.selection,name:hfb_app_cron_monitor.selection__hfb_cron_event__kind__failed
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.hfb_cron_event_view_search
+msgid "Failed"
+msgstr "Błąd"
+
+#. module: hfb_app_cron_monitor
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.hfb_cron_event_view_search
+msgid "Group By"
+msgstr "Grupuj wg"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,help:hfb_app_cron_monitor.field_hfb_cron_event__occurrences
+msgid ""
+"How many times in a row the scheduled action failed; only the first failure "
+"sends an alert."
+msgstr "Ile razy z rzędu zaplanowana akcja zakończyła się błędem; alert wysyłany jest tylko przy pierwszym błędzie."
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_hfb_cron_event__id
+msgid "ID"
+msgstr "ID"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_res_config_settings__cron_monitor_retention_days
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.res_config_settings_view_form_cron_monitor
+msgid "Keep Events (days)"
+msgstr "Przechowuj zdarzenia (dni)"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_hfb_cron_event__last_occurrence
+msgid "Last Occurrence"
+msgstr "Ostatnie wystąpienie"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_hfb_cron_event__write_uid
+msgid "Last Updated by"
+msgstr "Ostatnio aktualizował(a)"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_hfb_cron_event__write_date
+msgid "Last Updated on"
+msgstr "Data ostatniej aktualizacji"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_hfb_cron_event__message
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.hfb_cron_event_view_form
+msgid "Message"
+msgstr "Komunikat"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_ir_cron__monitor_enabled
+msgid "Monitor this action"
+msgstr "Monitoruj tę akcję"
+
+#. module: hfb_app_cron_monitor
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.ir_cron_view_form_monitor
+msgid "Monitoring"
+msgstr "Monitorowanie"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_ir_cron__event_ids
+msgid "Monitoring Events"
+msgstr "Zdarzenia monitorowania"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,help:hfb_app_cron_monitor.field_res_config_settings__cron_monitor_retention_days
+msgid ""
+"Monitoring events older than this are deleted automatically. 0 = keep "
+"forever."
+msgstr "Zdarzenia monitorowania starsze niż ta wartość są usuwane automatycznie. 0 = przechowuj bezterminowo."
+
+#. module: hfb_app_cron_monitor
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.res_config_settings_view_form_cron_monitor
+msgid ""
+"Monitoring events older than this are deleted automatically. 0 keeps them "
+"forever."
+msgstr "Zdarzenia monitorowania starsze niż ta wartość są usuwane automatycznie. 0 oznacza przechowywanie bezterminowo."
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_hfb_cron_event__occurrences
+msgid "Occurrences"
+msgstr "Liczba wystąpień"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,help:hfb_app_cron_monitor.field_ir_cron__monitor_threshold_hours
+msgid ""
+"Raise an alert when the action was due this many hours ago and still has not"
+" run. 0 = use the default from Settings."
+msgstr "Wywołaj alert, gdy akcja miała się wykonać tyle godzin temu i nadal się nie wykonała. 0 = użyj wartości domyślnej z Ustawień."
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields.selection,name:hfb_app_cron_monitor.selection__hfb_cron_event__kind__recovered
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.hfb_cron_event_view_search
+msgid "Recovered"
+msgstr "Wznowione"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_hfb_cron_event__cron_id
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.hfb_cron_event_view_search
+msgid "Scheduled Action"
+msgstr "Zaplanowana akcja"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model,name:hfb_app_cron_monitor.model_hfb_cron_event
+msgid "Scheduled Action Monitoring Event"
+msgstr "Zdarzenie monitorowania zaplanowanej akcji"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model,name:hfb_app_cron_monitor.model_ir_cron
+msgid "Scheduled Actions"
+msgstr "Zaplanowane akcje"
+
+#. module: hfb_app_cron_monitor
+#. odoo-python
+#: code:addons/hfb_app_cron_monitor/models/ir_cron.py:0
+#, python-format
+msgid ""
+"Scheduled action '%(name)s' was due at %(due)s (UTC) and has not run for "
+"more than %(hours)s hours."
+msgstr "Zaplanowana akcja '%(name)s' miała się wykonać %(due)s (UTC) i nie wykonała się od ponad %(hours)s godz."
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,help:hfb_app_cron_monitor.field_ir_cron__monitor_enabled
+msgid "Send an alert when this scheduled action fails or stops running."
+msgstr "Wyślij alert, gdy ta zaplanowana akcja zakończy się błędem lub przestanie się wykonywać."
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields.selection,name:hfb_app_cron_monitor.selection__hfb_cron_event__kind__stalled
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.hfb_cron_event_view_search
+msgid "Stalled"
+msgstr "Zablokowane"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_ir_cron__monitor_threshold_hours
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_res_config_settings__cron_monitor_threshold_hours
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.res_config_settings_view_form_cron_monitor
+msgid "Stalled After (hours)"
+msgstr "Zablokowane po (godziny)"
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,field_description:hfb_app_cron_monitor.field_hfb_cron_event__details
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.hfb_cron_event_view_form
+msgid "Technical Details"
+msgstr "Szczegóły techniczne"
+
+#. module: hfb_app_cron_monitor
+#. odoo-python
+#: code:addons/hfb_app_cron_monitor/models/ir_cron.py:0
+#, python-format
+msgid "The scheduled action ran successfully again."
+msgstr "Zaplanowana akcja znów wykonała się poprawnie."
+
+#. module: hfb_app_cron_monitor
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.res_config_settings_view_form_cron_monitor
+msgid ""
+"Who gets an alert when a scheduled action fails or stalls and has no "
+"addresses of its own."
+msgstr "Kto dostaje alert, gdy zaplanowana akcja zakończy się błędem lub się zablokuje i nie ma własnych adresów."
+
+#. module: hfb_app_cron_monitor
+#: model:ir.model.fields,help:hfb_app_cron_monitor.field_hfb_cron_event__notify_error
+msgid "Why the alert e-mail could not be created, if it could not."
+msgstr "Dlaczego nie udało się utworzyć e-maila z alertem (jeśli się nie udało)."
+
+#. module: hfb_app_cron_monitor
+#: model:mail.template,subject:hfb_app_cron_monitor.mail_template_cron_event
+msgid "[Cron Monitor] {{ object.display_name }}"
+msgstr "[Monitor cronów] {{ object.display_name }}"
+
+#. module: hfb_app_cron_monitor
+#: model_terms:ir.ui.view,arch_db:hfb_app_cron_monitor.res_config_settings_view_form_cron_monitor
+msgid "admin@example.com, it@example.com"
+msgstr "admin@example.com, it@example.com"
