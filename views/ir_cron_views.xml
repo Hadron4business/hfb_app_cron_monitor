@@ -14,14 +14,14 @@
                             <field name="monitor_threshold_hours" invisible="not monitor_enabled"/>
                         </group>
                         <field name="event_ids" readonly="1">
-                            <tree decoration-danger="kind == 'failed'"
+                            <list decoration-danger="kind == 'failed'"
                                   decoration-warning="kind == 'stalled'"
                                   decoration-success="kind == 'recovered'">
                                 <field name="create_date"/>
                                 <field name="kind"/>
                                 <field name="occurrences"/>
                                 <field name="message"/>
-                            </tree>
+                            </list>
                         </field>
                     </page>
                 </notebook>

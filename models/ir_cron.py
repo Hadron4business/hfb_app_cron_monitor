@@ -16,15 +16,14 @@
 # all copies or substantial portions of the Software.
 #
 #################################################################################
-""" @version	17.0.1.0.2
+""" @version	18.0.1.0.0
 	@owner  Hadron for Business
 	@author Hadron for Business sp. z o.o.
 	@date   2026.10.05
 
 	Cron Monitor - scheduled action hooks
-	Hooks into the cron runner. Odoo's _callback swallows job exceptions itself
-	(it calls _handle_callback_exception), so failures are caught there and
-	evaluated once _callback returns.
+	Hooks into the cron runner. _callback re-raises the exception of a failed job,
+	so a failure is caught around it, recorded, and raised again.
 
 	Status is deliberately NOT written to the ir_cron row: while a job runs, the
 	scheduler holds a row lock on it from another cursor, so an UPDATE from inside
@@ -32,7 +31,6 @@
 	Everything is stored in hfb.cron.event instead.
 """
 import logging
-import threading
 import traceback
 from datetime import timedelta
 
@@ -41,10 +39,6 @@ from odoo import SUPERUSER_ID, _, api, fields, models
 from .cron_event import DEFAULT_THRESHOLD_HOURS, PARAM_THRESHOLD_HOURS
 
 _logger = logging.getLogger(__name__)
-
-# One cron job runs per thread, so the exception handed to
-# _handle_callback_exception can be passed to _callback through thread-local.
-_local = threading.local()
 
 
 class IrCron(models.Model):
@@ -62,18 +56,16 @@ class IrCron(models.Model):
              "0 = use the default from Settings.")
     event_ids = fields.One2many('hfb.cron.event', 'cron_id', string="Monitoring Events", copy=False)
 
-    @api.model
-    def _callback(self, cron_name, server_action_id, job_id):
-        _local.failure = None
-        result = super()._callback(cron_name, server_action_id, job_id)
-        failure, _local.failure = getattr(_local, 'failure', None), None
-        self._monitor_record_run(job_id, failure)
+    def _callback(self, cron_name, server_action_id):
+        # Odoo rolls the transaction back and re-raises; the job runner commits
+        # right after, so whatever is written here after the failure is kept.
+        try:
+            result = super()._callback(cron_name, server_action_id)
+        except Exception as e:
+            self._monitor_record_run(self.id, e)
+            raise
+        self._monitor_record_run(self.id, None)
         return result
-
-    @api.model
-    def _handle_callback_exception(self, cron_name, server_action_id, job_id, job_exception):
-        _local.failure = job_exception
-        return super()._handle_callback_exception(cron_name, server_action_id, job_id, job_exception)
 
     @api.model
     def _monitor_record_run(self, job_id, failure):

@@ -10,9 +10,8 @@ job the scheduler no longer picks up leaves no trace at all.
 
 ## How it works
 
-- `ir.cron._handle_callback_exception` is overridden to remember the exception
-  and `ir.cron._callback` to evaluate it once the job returns. The first failure
-  of a streak creates an event and sends an alert; further failures only bump
+- `ir.cron._callback` is wrapped: a failed job's exception is recorded and re-raised.
+  The first failure of a streak creates an event and sends an alert; further failures only bump
   the event's counter. The first successful run after a failure or stall
   creates a "recovered" event.
 - An hourly scheduled action (`Cron Monitor: check for stalled scheduled
@@ -24,7 +23,7 @@ job the scheduler no longer picks up leaves no trace at all.
   are recorded but no mail is sent), stall threshold (24 h), event retention
   (90 days, cleaned by autovacuum).
 - **Only runs started by the scheduler are monitored.** *Run Manually* does not go through
-  `_callback` in Odoo 17 - the error is shown straight in the browser and nothing is recorded.
+  `_callback` in Odoo 18 - the error is shown straight in the browser and nothing is recorded.
 - If the monitor itself hits an error it never breaks the job; the last such error is kept in the
   system parameter `hfb_cron_monitor.last_error`.
 - Events: *Settings > Technical > Automation > Cron Monitor Events*.
@@ -39,16 +38,15 @@ lock that is only released after the job returns. All state lives in
 ## Technical
 
 - Models: `hfb.cron.event` (new), `ir.cron` and `res.config.settings` (extended).
-- Written for the Odoo 17 `_callback(cron_name, server_action_id, job_id)`
-  signature; this changes in later series (see the porting notes before
-  adapting).
+- Hooks `ir.cron._callback(cron_name, server_action_id)`.
+- Since Odoo 18 the core also counts consecutive failures (`failure_count`) and deactivates a cron
+  that keeps failing for days, notifying the admin. This app complements that: it alerts on the
+  *first* failure and detects jobs that are simply not being run.
 - Depends on: `base_setup`, `mail`.
 
 ## Status
 
-Built from the client-specific `hfb_cron_status` module, rewritten: the original
-never recorded successful runs (its `_callback` returned before the logging
-code) and would have deadlocked on the `ir_cron` row lock.
+Ported from the 17.0 branch (see its history for the rewrite of the client-specific `hfb_cron_status`).
 
-Not yet done: installed/tested on an Odoo instance, `i18n/pl.po`,
+Not yet done: installed/tested on an Odoo 18 instance, `i18n/pl.po`,
 `static/description/icon.png`, banner screenshot.

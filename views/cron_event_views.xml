@@ -4,7 +4,7 @@
         <field name="name">hfb.cron.event.tree</field>
         <field name="model">hfb.cron.event</field>
         <field name="arch" type="xml">
-            <tree create="0" edit="0"
+            <list create="0" edit="0"
                   decoration-danger="kind == 'failed'"
                   decoration-warning="kind == 'stalled'"
                   decoration-success="kind == 'recovered'">
@@ -14,7 +14,7 @@
                 <field name="occurrences"/>
                 <field name="message"/>
                 <field name="notified_emails"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -69,7 +69,7 @@
     <record id="hfb_cron_event_action" model="ir.actions.act_window">
         <field name="name">Cron Monitor Events</field>
         <field name="res_model">hfb.cron.event</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="hfb_cron_event_menu"
