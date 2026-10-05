@@ -38,7 +38,7 @@ Recipients and the stall threshold can be set per scheduled action, with a
 global default in Settings. Every alert is also kept as an event on the
 scheduled action, together with a "recovered" event when it runs fine again.
 """,
-    'version': "20.0.1.0.1",
+    'version': "20.0.1.0.2",
     'author': "Hadron for Business sp. z o.o.",
     'website': "http://hadronforbusiness.com",
     'license': "OPL-1",
