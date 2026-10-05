@@ -1,0 +1,2 @@
+id,name,model_id,group_id/id,operation,domain
+access_hfb_cron_event_system,hfb.cron.event system,hfb.cron.event,base.group_system,rd,

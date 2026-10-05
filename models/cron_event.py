@@ -16,7 +16,7 @@
 # all copies or substantial portions of the Software.
 #
 #################################################################################
-""" @version	19.0.1.0.0
+""" @version	20.0.1.0.0
 	@owner  Hadron for Business
 	@author Hadron for Business sp. z o.o.
 	@date   2026.10.05
@@ -79,15 +79,11 @@ class CronEvent(models.Model):
 
     @api.model
     def _int_param(self, key, default):
-        value = self.env['ir.config_parameter'].sudo().get_param(key)
-        try:
-            return int(value) if value not in (None, False, '') else default
-        except ValueError:
-            return default
+        return self.env['ir.config_parameter'].sudo().get_int(key, default)
 
     @api.model
     def _recipients(self, cron):
-        raw = cron.monitor_emails or self.env['ir.config_parameter'].sudo().get_param(PARAM_DEFAULT_EMAILS) or ''
+        raw = cron.monitor_emails or self.env['ir.config_parameter'].sudo().get_str(PARAM_DEFAULT_EMAILS, '')
         return tools.email_split(raw)
 
     @api.model

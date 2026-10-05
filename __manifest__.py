@@ -38,7 +38,7 @@ Recipients and the stall threshold can be set per scheduled action, with a
 global default in Settings. Every alert is also kept as an event on the
 scheduled action, together with a "recovered" event when it runs fine again.
 """,
-    'version': "19.0.1.0.0",
+    'version': "20.0.1.0.0",
     'author': "Hadron for Business sp. z o.o.",
     'website': "http://hadronforbusiness.com",
     'license': "OPL-1",
@@ -48,7 +48,7 @@ scheduled action, together with a "recovered" event when it runs fine again.
         'mail',
     ],
     'data': [
-        'security/ir.model.access.csv',
+        'security/ir.access.csv',
         'data/mail_template.xml',
         'data/ir_cron_data.xml',
         'views/cron_event_views.xml',

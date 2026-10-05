@@ -16,7 +16,7 @@
 # all copies or substantial portions of the Software.
 #
 #################################################################################
-""" @version	19.0.1.0.0
+""" @version	20.0.1.0.0
 	@owner  Hadron for Business
 	@author Hadron for Business sp. z o.o.
 	@date   2026.10.05
@@ -104,7 +104,7 @@ class IrCron(models.Model):
         try:
             with self.pool.cursor() as cr:
                 env = api.Environment(cr, SUPERUSER_ID, {})
-                env['ir.config_parameter'].set_param(
+                env['ir.config_parameter'].set_str(
                     'hfb_cron_monitor.last_error', "%s UTC - %s" % (fields.Datetime.now(), message[:1500]))
         except Exception:
             _logger.exception("Cron Monitor could not store its last error")

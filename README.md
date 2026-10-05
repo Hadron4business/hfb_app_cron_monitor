@@ -22,7 +22,7 @@ job the scheduler no longer picks up leaves no trace at all.
   *Settings > General Settings > Cron Monitor*: default e-mails (empty = events
   are recorded but no mail is sent), stall threshold (24 h), event retention
   (90 days, cleaned by autovacuum).
-- *Run Manually* goes through the regular job runner in Odoo 19, so manual runs are monitored too.
+- *Run Manually* goes through the regular job runner in Odoo 20, so manual runs are monitored too.
 - If the monitor itself hits an error it never breaks the job; the last such error is kept in the
   system parameter `hfb_cron_monitor.last_error`.
 - Events: *Settings > Technical > Automation > Cron Monitor Events*.
@@ -41,11 +41,12 @@ lock that is only released after the job returns. All state lives in
 - Since Odoo 18 the core also counts consecutive failures (`failure_count`) and deactivates a cron
   that keeps failing for days, notifying the admin. This app complements that: it alerts on the
   *first* failure and detects jobs that are simply not being run.
+- `security/ir.access.csv` (Odoo 20 replaced `ir.model.access`); typed `ir.config_parameter` getters.
 - Depends on: `base_setup`, `mail`.
 
 ## Status
 
 Ported from the 17.0 branch (see its history for the rewrite of the client-specific `hfb_cron_status`).
 
-Not yet done: installed/tested on an Odoo 19 instance, `i18n/pl.po`,
+Not yet done: installed/tested on an Odoo 20 instance, `i18n/pl.po`,
 `static/description/icon.png`, banner screenshot.
